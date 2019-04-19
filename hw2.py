@@ -4,6 +4,7 @@ Created on Fri Apr 19 15:18:48 2019
 
 @author: nwkeith
 """
+import spidev
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from numpy import interp
@@ -14,7 +15,7 @@ import serial
 import sys
 import numpy as np
 import pyqtgraph
-ser=serial.Serial('COM4', 9600)
+#ser=serial.Serial('COM4', 9600)
 
 spi=spidev.SpiDev()
 spi.open(0,0)
@@ -47,7 +48,7 @@ class ExampleApp(QtGui.QMainWindow):
         n=0
         dataLst=[]
         while n<100:
-            dataPoint=ser.readline()
+            dataPoint=self.analogInput(0)
             #dataPoint=int(dataPoint)
             dataLst.append(dataPoint)
             n+=1
